@@ -25,3 +25,14 @@ bosh-lite/manifests/*
 bosh-lite/tmp/*
 pkg
 tmp
+
+
+# go tools
+src/influxdb-firehose-nozzle/bin/
+src/influxdb-firehose-nozzle/src/github.com/dougm/
+src/influxdb-firehose-nozzle/src/github.com/golang/
+src/influxdb-firehose-nozzle/src/github.com/kisielk/
+src/influxdb-firehose-nozzle/src/github.com/mdempsky/
+src/influxdb-firehose-nozzle/src/github.com/nsf/
+src/influxdb-firehose-nozzle/src/github.com/rogpeppe/
+src/influxdb-firehose-nozzle/src/golang.org/
