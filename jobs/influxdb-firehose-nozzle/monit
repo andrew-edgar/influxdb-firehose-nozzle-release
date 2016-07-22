@@ -1,0 +1,5 @@
+check process influxdb-firehose-nozzle
+  with pidfile /var/vcap/sys/run/influxdb-firehose-nozzle/influxdb-firehose-nozzle.pid
+  start program "/var/vcap/jobs/influxdb-firehose-nozzle/bin/influxdb-firehose-nozzle-ctl start"
+  stop program "/var/vcap/jobs/influxdb-firehose-nozzle/bin/influxdb-firehose-nozzle-ctl stop"
+  group vcap

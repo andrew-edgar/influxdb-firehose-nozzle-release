@@ -1,0 +1,60 @@
+---
+name: influxdb-firehose-nozzle
+templates:
+  influxdb-firehose-nozzle-ctl.erb: bin/influxdb-firehose-nozzle-ctl
+  influxdb-firehose-nozzle.json.erb: config/influxdb-firehose-nozzle.json
+  influxdb_logrotate.cron.erb: config/influxdb_logrotate.cron
+  logrotate.conf.erb: config/logrotate.conf
+
+packages:
+- influxdb-firehose-nozzle
+
+properties:
+  loggregator.traffic_controller_url:
+    description: "Traffic controller URL"
+  influxdb.api_url:
+    description: "The REST API Endpoint for influxdb"
+    default: "https://app.influxdbhq.com/api/v1/series"
+  influxdb.database:
+    description: "The influxdb database name"
+  influxdb.user:
+    description: "The influxdb database username"
+  influxdb.password:
+    description: "The influxdb database password"
+  influxdb.allow_self_signed:
+    description: "The influxdb allow self signed certificate flag"
+    detault: true
+  influxdb.flush_duration_seconds:
+    description: "The duration in seconds between flushes to influxdb"
+    default: 15
+  influxdb.metric_prefix:
+    description: "Text which will be prepended to each metric name submitted to influxdb"
+    default: "influxdb.nozzle."
+  influxdb.logrotate.freq_min:
+    description: "The frequency in minutes which logrotate will rotate VM logs"
+    default: 5
+  influxdb.logrotate.rotate:
+    description: "The number of files that logrotate will keep around on the VM"
+    default: 3
+  influxdb.logrotate.size:
+    description: "The size at which logrotate will decide to rotate the log file"
+    default: 50M
+
+  uaa.url:
+    description: "URL for the UAA server"
+  uaa.username:
+    description: "The user who has access to the loggregator firehose"
+  uaa.password:
+    description: "The password for the user"
+  nozzle.insecure_ssl_skip_verify:
+    description: "Skip verifying SSL certificate"
+  nozzle.subscription_id:
+    description: "The subscription id to be used for the firehose"
+  nozzle.deployment:
+    description: "Name of deployment (added as tag on all outgoing metrics)"
+  nozzle.idle_timeout_seconds:
+    description: "Number of seconds to wait before timing out the read to the firehose, if there are no messages"
+    default: 60
+  nozzle.disable_access_control:
+    description: "influxdb Nozzle bypasses authentication with the UAA"
+    default: false

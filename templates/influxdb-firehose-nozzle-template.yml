@@ -1,0 +1,60 @@
+---
+meta: (( merge ))
+
+name: (( merge ))
+director_uuid: (( merge ))
+releases:
+  - name: influxdb-firehose-nozzle
+    version: latest
+
+compilation:
+  workers: (( merge ))
+  network: influxdb-firehose-nozzle-net
+  reuse_compilation_vms: true
+  cloud_properties: (( merge ))
+
+update:
+  canaries: 1
+  canary_watch_time: 30000-100000
+  update_watch_time: 30000-100000
+  max_in_flight: 1
+  max_errors: 1
+
+networks:
+- name: influxdb-firehose-nozzle-net
+  subnets: (( merge ))
+
+resource_pools:
+- name: influxdb-firehose-nozzle
+  network: influxdb-firehose-nozzle-net
+  stemcell: (( meta.stemcell ))
+  cloud_properties: (( merge ))
+
+jobs:
+- name: influxdb-firehose-nozzle
+  memory_mb: 2048
+  templates:
+    - {name: influxdb-firehose-nozzle, release: influxdb-firehose-nozzle}
+  instances: (( merge ))
+  resource_pool: influxdb-firehose-nozzle
+  networks: (( merge ))
+
+properties:
+  loggregator:
+    traffic_controller_url: (( merge ))
+  influxdb:
+    api_url: (( merge ))
+    database: (( merge ))
+    user: (( merge ))
+    password: (( merge ))
+    flush_duration_seconds: (( merge ))
+    metric_prefix: (( merge ))
+  uaa:
+    url: (( merge ))
+    username: (( merge ))
+    password: (( merge ))
+  nozzle:
+    disable_access_control: (( merge || nil ))
+    insecure_ssl_skip_verify: (( merge ))
+    subscription_id: (( merge ))
+    deployment: (( merge ))

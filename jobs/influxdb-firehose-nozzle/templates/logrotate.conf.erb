@@ -1,0 +1,9 @@
+/var/vcap/sys/log/influxdb-firehose-nozzle/*.log {
+  missingok
+  rotate <%= p("influxdb.logrotate.rotate") %>
+  compress
+  delaycompress
+  copytruncate
+  size=<%= p("influxdb.logrotate.size") %>
+}
+

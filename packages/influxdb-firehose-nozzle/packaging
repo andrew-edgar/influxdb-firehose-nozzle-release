@@ -1,0 +1,11 @@
+set -e -x
+
+export GOROOT=$(readlink -nf /var/vcap/packages/golang1.6)
+export PATH=$GOROOT/bin:$PATH
+
+cd influxdb-firehose-nozzle
+
+export GOPATH=$PWD
+
+go install github.com/luan/influxdb-firehose-nozzle
+cp -a $PWD/bin/influxdb-firehose-nozzle ${BOSH_INSTALL_TARGET}
