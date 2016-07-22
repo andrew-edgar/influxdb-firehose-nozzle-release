@@ -7,5 +7,5 @@ cd influxdb-firehose-nozzle
 
 export GOPATH=$PWD
 
-go install github.com/luan/influxdb-firehose-nozzle
+go install github.com/andrew-edgar/influxdb-firehose-nozzle
 cp -a $PWD/bin/influxdb-firehose-nozzle ${BOSH_INSTALL_TARGET}
