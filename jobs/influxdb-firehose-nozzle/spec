@@ -23,7 +23,7 @@ properties:
     description: "The influxdb database password"
   influxdb.allow_self_signed:
     description: "The influxdb allow self signed certificate flag"
-    detault: true
+    default: true
   influxdb.flush_duration_seconds:
     description: "The duration in seconds between flushes to influxdb"
     default: 15
